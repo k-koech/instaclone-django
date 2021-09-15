@@ -43,6 +43,8 @@ class Users(AbstractBaseUser):
     bio= models.TextField(null=True)
     gender = models.CharField( max_length=20)
     phone = models.CharField( max_length=50, unique=False,null=True)
+    following = ArrayField(models.CharField(max_length=50, null=True),size=1000 )
+    following = ArrayField(models.CharField(max_length=50, null=True),size=1000 )
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(default=dt.datetime.now)
     is_admin = models.BooleanField(default=False)
