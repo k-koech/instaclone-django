@@ -1,8 +1,8 @@
 # GALLERY APPLICATION 
-#### The app is a personal gallery app, 15/09/2021
+#### The app is a PHOTO app, 15/09/2021
 #### **By Kelvin Kipchumba**
 ## Project Description
-    Its a personal gallery application that I display my photos for others to see.
+    Its a clone of the website for the popular photo app Instagram users can share their photos.
 ## Setup/Installation Requirements
     - Download a file in the code section to the desired folder
     - Extract the files
