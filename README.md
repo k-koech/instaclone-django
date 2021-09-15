@@ -24,7 +24,7 @@
   
     
 ## Live link
-Deployed project can be accessed here [Gallery](https://djangogallery.herokuapp.com/)   
+Deployed project can be accessed here [instaclone]()   
 
 ## Known Bugs
     The application works perfectly well, no bugs.
