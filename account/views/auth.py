@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from ..models import Posts, Users
+from ..models import Comments, Posts, Users
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
@@ -10,7 +10,8 @@ def index(request):
 
 def dashboard(request):
     posts=Posts.objects.all()
-    context= {"posts":posts}
+    comments=Comments.objects.all()
+    context= {"posts":posts,"comments":comments}
     return render(request, "dashboard.html",context)
     
 def signUp(request):
