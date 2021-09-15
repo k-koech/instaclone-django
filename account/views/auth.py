@@ -10,7 +10,8 @@ def index(request):
 
 def dashboard(request):
     posts=Posts.objects.all()
-    return render(request, "dashboard.html",{"posts":posts})
+    context= {"posts":posts}
+    return render(request, "dashboard.html",context)
     
 def signUp(request):
     if request.method=="POST":
