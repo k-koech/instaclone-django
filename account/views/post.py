@@ -107,3 +107,13 @@ def add_comment(request,post_id):
         return redirect(dashboard)
     else:
         return redirect(dashboard)
+
+
+def follow(request):
+    if request.method=="POST":
+        comment=request.POST['comment']
+        comment = Comments(comment=comment, post_id=post_id, user_id=request.user.id)
+        comment.save()
+        return redirect(dashboard)
+    else:
+        return redirect(dashboard)

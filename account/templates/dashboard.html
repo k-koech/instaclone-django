@@ -180,19 +180,30 @@
             <div class="mt-2 mb-2 ml-2">
               {% for user in users %}
               <div class="mb-2">
-                <span>
-                  <img src="{{user.profile_image.url}}"
-                    style="width: 30px; height: 30px; border-radius: 50%"/>
-                </span>
-                <a href="https://www.instagram.com/kablosuzbeyin" target="_blank">
-                <span class="postuserfont ml-2 mt-1">
-                  <strong>{{ user.username }}</strong>
-                </span>
-
-                <span class="postuserfont float-right"
-                  style="font-size: 13px; color: #0095f6; margin-top: 5px"
-                  ><strong>Follow</strong></span>
-                </a>
+               
+                <div class="row">
+                  <div class="col-sm-6">
+                    <span>
+                      <img src="{{user.profile_image.url}}"
+                        style="width: 30px; height: 30px; border-radius: 50%"/>
+                    </span>
+                    <a href="https://www.instagram.com/kablosuzbeyin" target="_blank">
+                    <span class="postuserfont ml-2 mt-1">
+                      <strong>{{ user.username }}</strong>
+                    </span>
+                    </a>
+                  </div>
+                  <div class="col-sm-6 text-right">
+                  <button class="btn btn-sm btn-outline-secondary mr-0 border-0">
+                    <span class="postuserfont float-right"
+                      style="font-size: 13px; color: #0095f6; "
+                      ><strong>Follow</strong></span>
+                  </button>
+                  </div>
+                </div>
+                
+                
+                
               </div>
               {% endfor %}
 

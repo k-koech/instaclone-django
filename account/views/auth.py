@@ -22,7 +22,7 @@ def signUp(request):
         password=request.POST['password']
         confirm_password=request.POST['confirm_password']
         if password==confirm_password:
-            user = Users(username=username, email=email, password=make_password(password))
+            user = Users(username=username, email=email,followers=[],following=[], password=make_password(password))
             user.save()
             messages.add_message(request, messages.SUCCESS, 'Successfully Registered!')
             return redirect(signIn)
