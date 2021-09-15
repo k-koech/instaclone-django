@@ -21,12 +21,13 @@ def signUp(request):
         if password==confirm_password:
             user = Users(username=username, email=email, password=make_password(password))
             user.save()
-            messages.add_message(request, messages.INFO, 'Successfully Registered!')
-            print("saved")
+            messages.add_message(request, messages.SUCCESS, 'Successfully Registered!')
+            return redirect(signIn)
         else:
-            print("password doesnt match")
-
-    return render(request, "register.html")
+            messages.add_message(request, messages.WARNING, "Password doesn't match ")
+            return redirect(signUp)
+    else:
+        return render(request, "register.html")
 
 def signIn(request):
      if request.method=="POST":
@@ -40,7 +41,7 @@ def signIn(request):
             return redirect(dashboard)
  
         else:
-            messages.add_message(request, messages.ERROR, 'Invalid Credentials')
+            messages.add_message(request, messages.WARNING, 'Invalid Credentials')
             return redirect(signIn)
 
      else:

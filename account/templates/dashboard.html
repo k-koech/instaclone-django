@@ -52,7 +52,7 @@
 {% for post in posts %}
       <div class="card mb-4">
         <div class="card-header">
-          <img src="{{post.post_image.url}}" class="mr-2" style="width: 35px; height: 35px; border-radius: 50%"
+          <img src="{{post.user.profile_image.url}}" class="mr-2" style="width: 35px; height: 35px;font-family: Arial; border-radius: 50%"
           />
           <span class="postuserfont"><strong>{{post.user.username}}</strong></span>
           <span class="float-right mt-2"
@@ -74,13 +74,7 @@
             <a class="nav-link" href="#"
               ><i
                 class="far fa-paper-plane fa-lg"
-                style="
-                  color: black;
-                  position: relative;
-                  font-size: 23px;
-                  margin-left: -11px;
-                "
-              ></i
+                style="color: black;position: relative;font-size: 23px;margin-left: -11px;"></i
             ></a>
           </li>
           <span class="offset-7">
@@ -132,19 +126,10 @@
           </p>
         </div>
 
-        <form action="/comment/{{ post.id }}" method="POST" class="card rounded-0" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="form-group row">
-            <div class="col-sm-9">
-              <input type="text" name="comment" class="form-control-plaintext pl-2 rounded-0 border-0" placeholder="Comment ... " >
-            </div>
-            <button type="submit" class="btn btn-primary btn-sm col-sm-2">Post</button>
-          </div>
-        </form>
+       
       </div>
 {% endfor %}
     </div>
-
      <!-- Right sidebar -->
     <div class="col-12 col-sm-12 col-md-5 d-sm-none d-md-block">
       <div class="card col-xs-12 rightpanel" id="sticky-sidebar" style="width: 22rem">
@@ -259,13 +244,11 @@
                 </span>
                 <a href="https://www.instagram.com/kodluyoruz_junior" target="_blank">
                 <span class="postuserfont ml-2 mt-1"
-                  ><strong>Kodluyoruz Junior</strong></span
-                >
+                  ><strong>Kodluyoruz Junior</strong></span>
                 <span
                   class="postuserfont float-right"
                   style="font-size: 13px; color: #0095f6; margin-top: 5px"
-                  ><strong>Takip Et</strong></span
-                >
+                  ><strong>Takip Et</strong></span>
                 </a>
               </div>
             </div>
