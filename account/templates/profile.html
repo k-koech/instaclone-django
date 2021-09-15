@@ -1,0 +1,53 @@
+{% extends "includes/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+<div class="container mt-4 profile-container">
+  {% if messages %}
+  <div class="messages">
+      {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+      {% endfor %}
+  </div>
+  {% endif %}
+  <div class="row profile-row">
+    <div class="col-md-4 col-sm-12 text-center">
+        <img src="{{ user.profile_image.url }}" class="profilephoto img-fluid mr-3" />     
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <p class="bg-light h4">
+        <span class=""><strong>{{ user.username }}</strong></span>  
+        <span class="mx-2"><a href="/account/edit" class="btn btn-sm btn-outline-secondary">Edit profile</a></span> 
+      </p>
+       
+      <p class="bg-light"><span class="mr-2"><strong>{{ no_of_posts }} </strong>Posts</span>  
+        <span class="mx-2"><strong>{{ 12 }} </strong>Followers</span>  
+        <span class="mx-2"><strong>{{ 12 }} </strong>Following </span> 
+      </p>
+      <div class="">
+       <h6 class="font-weight-bold">{{ user.email }}</h6>
+       <p>Chelsea fan</p>
+      </div>
+    </div>
+  </div>
+    <hr>
+  <div class="text-center"><h5 class="text-muted">Posts</h5></div> 
+  <div class="row">
+    {% for post in posts %}
+      <div class="col-md-4 col-sm-3 my-posts">
+      <img src="{{post.post_image.url}}" />
+      </div>
+    {% endfor %}
+  </div>
+  
+</div>
+
+{% include "includes/footer.html" %}
+
+{% endblock %}
