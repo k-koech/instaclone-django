@@ -35,12 +35,11 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
         
-
 class Users(AbstractBaseUser):
     username = models.CharField( max_length=20, unique=True)  
     email = models.CharField( max_length=50, unique=True)
     name = models.CharField( max_length=50, unique=False, default="Male")
-    profile_image =  CloudinaryField('image', default='image/upload/v1631633940/dgzqbe90lqq2fq6vhdxk.png')  
+    profile_image =  CloudinaryField('image', default='image/upload/v1631717620/default_uomrne.jpg')  
     bio= models.TextField(null=True)
     gender = models.CharField( max_length=20)
     phone = models.CharField( max_length=50, unique=False,null=True)
