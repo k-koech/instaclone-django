@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+body
+{
+    background-color: rgb(238, 238, 238);
+}
+a
+{
+    text-decoration: none !important;
+}
+
+.landing-image
+{
+  background-position: right; 
+  background-repeat: no-repeat; 
+  background-size: 65%;
+ }
+.login-col
+{
+    text-align: left;
+}
+
+.login-col .title
+{
+    font-family: 'Satisfy', cursive;
+    font-size: 2em;
+    font-weight: 600;
+}
+.login-col
+{
+    width: 20em !important;
+}
+
+
+.login-col .or 
+{
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid rgb(155, 155, 155); 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+ } 
+ 
+ .login-col .or span { 
+     background:#fff; 
+     padding:0 10px;     
+     font-size: 0.7em;
+
+ }
+
+ .login-col .forgotPass a
+ {
+     font-size: small;
+     color: rgb(32, 47, 95);
+ }
+
+ .login-col .register
+ {
+     display: flex !important;
+     align-items:center !important;
+     justify-content: center !important;
+     display: block;
+ }
+ .login-col .register p
+ {
+     font-size: small;
+ }
