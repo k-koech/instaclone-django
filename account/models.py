@@ -72,8 +72,6 @@ class Posts(models.Model):
     user = models.ForeignKey('Users', on_delete=models.CASCADE)   
     date_posted = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     likes = ArrayField(models.CharField(max_length=50, null=True),size=8 )
-    # ArrayField(ArrayField(models.IntegerField()),null=True)
-
 
 class Comments(models.Model):
     comment = models.TextField()

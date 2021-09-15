@@ -10,8 +10,9 @@ def index(request):
 
 def dashboard(request):
     posts=Posts.objects.all()
+    users = Users.objects.all().filter(id!=request.user.id)
     comments=Comments.objects.all()
-    context= {"posts":posts,"comments":comments}
+    context= {"posts":posts,"comments":comments,"users":users}
     return render(request, "dashboard.html",context)
     
 def signUp(request):
