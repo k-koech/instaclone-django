@@ -194,11 +194,14 @@
                     </a>
                   </div>
                   <div class="col-sm-6 text-right">
+                  <form action="follow/{{user.username}}" method="POST">
+                    {% csrf_token %}
                   <button class="btn btn-sm btn-outline-secondary mr-0 border-0">
                     <span class="postuserfont float-right"
                       style="font-size: 13px; color: #0095f6; "
                       ><strong>Follow</strong></span>
                   </button>
+                </form>
                   </div>
                 </div>
                 

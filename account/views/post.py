@@ -109,11 +109,43 @@ def add_comment(request,post_id):
         return redirect(dashboard)
 
 
-def follow(request):
-    if request.method=="POST":
-        comment=request.POST['comment']
-        comment = Comments(comment=comment, post_id=post_id, user_id=request.user.id)
-        comment.save()
+def follow(request, username):
+    user= Users.objects.get(username=username)
+    print(username)
+    if len(user.following) == 0:
+        user.following.insert(0,username)
+        print(username)
+        user.save()
         return redirect(dashboard)
+
+    
     else:
-        return redirect(dashboard)
+        for following in user.following:
+            if following==request.user.username:
+                print("exist")
+                return redirect(dashboard)
+            else:
+                user.following.insert(0,username)
+                print(username)
+                user.save()
+
+    return redirect(dashboard)
+    # else:
+    #     return redirect(dashboard)
+
+
+    # if len(post.likes) == 0:
+        
+    #     print("first one")
+    #     return  redirect(dashboard)
+    # else:
+    #     print(post.likes)   
+    #     for i in post.likes:
+    #         if int(i)!=request.user.id:
+    #             post.likes.insert(0,request.user.id)
+    #             post.save()
+    #             return  redirect(dashboard)
+    #         else:
+    #             return  redirect(dashboard)            
+    
+    # return redirect(dashboard)   
