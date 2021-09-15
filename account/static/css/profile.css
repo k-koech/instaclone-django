@@ -1,0 +1,30 @@
+.profile-container
+{
+    margin-left: 5em !important;
+    margin-right: 5em !important;
+    margin-bottom: 2em !important;
+}
+.profile-row
+{
+    min-height: 12em;
+}
+.profilephoto 
+{
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid rgb(209, 209, 209);
+    margin-right: 7px;
+}
+.my-posts 
+{
+    overflow: hidden;
+    height: 15em !important;
+    text-align: center;
+}
+.my-posts  img
+{
+width: 100%;
+}
+
