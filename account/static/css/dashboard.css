@@ -1,0 +1,26 @@
+.post
+{
+    padding-left: 3em !important;
+}
+
+.like .fa-heart
+{
+    color: rgb(0, 0, 0); 
+    position: relative !important; 
+    font-size: 23px;
+}
+
+.like .fa-heart:hover
+{
+    color: brown;
+}
+
+
+@media only screen and (max-width: 768px) 
+{
+    .post
+    {
+        padding-left: 1em !important;
+        padding-left: 1em !important;
+    }
+}

@@ -1,0 +1,13 @@
+.footerlinks 
+{
+    text-decoration: none;
+    color: rgb(88, 88, 88);
+    margin-left: 5px;
+    margin-right: 3px;
+}
+
+.footerlinks:hover 
+{
+    text-decoration: none;
+    color: rgb(129, 126, 126);
+}
