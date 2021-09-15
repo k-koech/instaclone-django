@@ -16,11 +16,11 @@
 
 ## BDD
     As a user should;
-    - View different photos that interest me.
-    - Click on a single photo to expand it and also view the details of the photo. The photo details must appear on a modal within the same route as the main page.
-    - Search for different categories of photos. (ie. Travel, Food)
-    - Copy a link to the photo to share with my friends.
-    - View photos based on the location they were taken.
+    - Sign in to the application to start using.
+    - Upload my pictures to the application.
+    - See my profile with all my pictures.
+    - Follow other users and see their pictures on my timeline.
+    - Like a picture and leave a comment on it.
   
     
 ## Live link
@@ -41,5 +41,5 @@ Deployed project can be accessed here [instaclone]()
     - phone :: +254725801772
 
 ### License
-*Licenced under the [MT-licence](https://github.com/k-koech/gallery_django/blob/master/LICENSE.md)*
+*Licenced under the [MT-licence](https://github.com/k-koech/instaclone-django/blob/master/LICENSE.md)*
 Copyright (c) 2021 **Kelvin Kipchumba
