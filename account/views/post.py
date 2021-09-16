@@ -110,42 +110,72 @@ def add_comment(request,post_id):
 
 
 def follow(request, username):
-    user= Users.objects.get(username=username)
-    print(username)
-    if len(user.following) == 0:
+    user= Users.objects.get(id=request.user.id)
+    followed_user= Users.objects.get(username=username)
+
+    if len(user.following) == 0 and len(followed_user.followers) == 0:
         user.following.insert(0,username)
+        followed_user.followers.insert(0,request.user.username)
         print(username)
         user.save()
+        followed_user.save()
         return redirect(dashboard)
+        # else:
+        #     for followers in followed_user.following:
+        #         if followers==username:
+        #             followed_user.followers.insert(0,username)
+        #             followed_user.save()
+        #             return redirect(dashboard)
 
-    
-    else:
+    elif len(user.following) != 0 and len(followed_user.followers) == 0:
         for following in user.following:
-            if following==request.user.username:
+            if following==username:
                 print("exist")
                 return redirect(dashboard)
             else:
                 user.following.insert(0,username)
+                followed_user.followers.insert(0,request.user.username)
                 print(username)
                 user.save()
+                followed_user.save()
+                return redirect(dashboard)            
+
+    else:
+        for following in user.following:
+            for followers in followed_user.following:
+            # print("following" +following) 
+            # print("username"+ username)
+            # return redirect(dashboard)
+                if following==username and followers==username:
+                    print("exist")
+                    return redirect(dashboard)
+                else:
+                    user.following.insert(0,username)
+                    followed_user.followers.insert(0,request.user.username)
+                    user.save()
+                    followed_user.save()
+                    
 
     return redirect(dashboard)
-    # else:
-    #     return redirect(dashboard)
+ 
 
+#    user= Users.objects.get(id=username)
+#     print(username)
+#     if len(user.following) == 0:
+#         user.following.insert(0,username)
+#         print(username)
+#         user.save()
+#         return redirect(dashboard)
 
-    # if len(post.likes) == 0:
-        
-    #     print("first one")
-    #     return  redirect(dashboard)
-    # else:
-    #     print(post.likes)   
-    #     for i in post.likes:
-    #         if int(i)!=request.user.id:
-    #             post.likes.insert(0,request.user.id)
-    #             post.save()
-    #             return  redirect(dashboard)
-    #         else:
-    #             return  redirect(dashboard)            
     
-    # return redirect(dashboard)   
+#     else:
+#         for following in user.following:
+#             if following==request.user.username:
+#                 print("exist")
+#                 return redirect(dashboard)
+#             else:
+#                 user.following.insert(0,username)
+#                 print(username)
+#                 user.save()
+
+#     return redirect(dashboard)

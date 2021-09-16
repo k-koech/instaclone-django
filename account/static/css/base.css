@@ -53,6 +53,7 @@
     border: 2px solid rgb(238, 39, 82);
     margin-right: 15px;
     display: block;
+    padding: auto;
   }
   
   .storytext {
