@@ -67,6 +67,10 @@ class Users(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+class profile(models.Model):
+    profile_image =  CloudinaryField('image', default='image/upload/v1631717620/default_uomrne.jpg')  
+    bio= models.TextField(null=True)
+
 class Posts(models.Model):
     post_image =  CloudinaryField('image')
     caption = models.TextField()
