@@ -74,6 +74,21 @@ class Posts(models.Model):
     date_posted = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     likes = ArrayField(models.CharField(max_length=50, null=True),size=8 )
 
+    def save_image(self):
+        self.save()
+    
+    @classmethod
+    def delete_image(cls,id):
+        del_image = cls.objects.get(id=id)
+        del_image.delete()
+        return del_image
+    
+    @classmethod
+    def update_caption(cls,id,caption):
+        get_image=cls.objects.get(id=id)
+        get_image.caption=caption
+        return get_image.save()
+
 class Comments(models.Model):
     comment = models.TextField()
     date_posted = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
