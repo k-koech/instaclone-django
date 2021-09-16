@@ -1,15 +1,18 @@
 from django.shortcuts import redirect, render
-from ..models import Comments, Posts, Users
+from ..models import Comments, Users,Profile, Image as Posts
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 def index(request):
     return render(request, "index.html")
 
 @login_required(login_url='/')
 def dashboard(request):
+    profile_details=Profile.objects.get(user=request.user.id)
     loggedin_user = Users.objects.get(id=request.user.id)
     print(loggedin_user)
 
@@ -24,7 +27,7 @@ def dashboard(request):
     posts=Posts.objects.all()
     users = Users.objects.exclude(id=request.user.id)
     comments=Comments.objects.all()
-    context= {"posts":posts,"comments":comments,"users":users}
+    context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details}
     return render(request, "dashboard.html",context)
     
 def signUp(request):
@@ -36,6 +39,12 @@ def signUp(request):
         if password==confirm_password:
             user = Users(username=username, email=email,followers=[],following=[], password=make_password(password))
             user.save()
+
+            user = Users.objects.get(username=username)
+            print(user.id)
+            profile=Profile(user=user.id)
+            profile.save()
+
             messages.add_message(request, messages.SUCCESS, 'Successfully Registered!')
             return redirect(signIn)
         else:

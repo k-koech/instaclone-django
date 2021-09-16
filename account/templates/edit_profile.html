@@ -18,7 +18,7 @@
   {% endif %}
   <div class="row profile-row">
     <div class="col-md-4 col-sm-12 text-center">
-        <img src="{{ user.profile_image.url }}" class="profilephoto img-fluid mr-3" />     
+        <img src="{{ profile_details.profile_photo.url }}" class="profilephoto img-fluid mr-3" />     
     </div>
     <div class="col-md-8 col-sm-12">
         <div class="card p-4 pt-3">
@@ -26,7 +26,7 @@
             
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">
-                  <img src="{{ user.profile_image.url }}" class="mb-2 ml-5" style="width: 4em; height: 4em; border-radius: 50%;"/>
+                  <img src="{{ profile_details.profile_photo.url }}" class="mb-2 ml-5" style="width: 4em; height: 4em; border-radius: 50%;"/>
                 </label>
                 <div class="col-sm-9 profile-">
                   <p class="mb-0 h5">{{ user.username }}</p>

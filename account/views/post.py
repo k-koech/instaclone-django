@@ -1,6 +1,6 @@
 from account.views.auth import dashboard
 from django.shortcuts import redirect, render
-from ..models import Comments, Posts, Users
+from ..models import Comments, Profile, Users, Image as Posts
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
@@ -17,7 +17,7 @@ def add_post(request):
         messages.add_message(request, messages.SUCCESS, 'Post saved successfully!')
         return redirect(dashboard)
      else:
-        return render(request, "dashboard.html")
+        return redirect(dashboard)
 
 @login_required(login_url='/')   
 def like_post(request, post_id):   
@@ -43,6 +43,7 @@ def like_post(request, post_id):
 def profile(request, username):
     posts=Posts.objects.filter(user_id=request.user)
     no_of_posts = Posts.objects.filter(user_id=request.user).count()
+    profile_details=Profile.objects.get(user=request.user.id)
     
     if request.method=="POST":
         username=request.POST['username']
@@ -57,10 +58,13 @@ def profile(request, username):
         else:
             print("password doesnt match")
 
-    return render(request, "profile.html",{"posts":posts, "no_of_posts":no_of_posts})
+    return render(request, "profile.html",{"posts":posts, "no_of_posts":no_of_posts,"profile_details":profile_details})
+
 
 @login_required(login_url='/')
 def edit_profile(request):   
+    profile_details=Profile.objects.get(user=request.user.id)
+
     if request.method=="POST":
         user = Users.objects.get(id=request.user.id)
         user.username=request.POST['username']
@@ -69,18 +73,20 @@ def edit_profile(request):
         user.bio=request.POST['bio']
         user.name=request.POST['name']
         user.gender=request.POST['gender']
+        profile = Profile.objects.get(user=request.user.id)
 
         user.save()
+        profile.save()
         messages.add_message(request, messages.INFO, 'Profile updated successfully!')
         return redirect(edit_profile)
-    return render(request, "edit_profile.html")
+    return render(request, "edit_profile.html",{"profile_details":profile_details})
 
 @login_required(login_url='/')
 def update_dp(request):
      if request.method=="POST":
         image=request.FILES['image']
-        user = Users.objects.get(id=request.user.id)
-        user.profile_image=image
+        user = Profile.objects.get(user=request.user.id)
+        user.profile_photo=image
         user.save()
         messages.add_message(request, messages.SUCCESS, 'Profile Updated!')
         return redirect(edit_profile)
