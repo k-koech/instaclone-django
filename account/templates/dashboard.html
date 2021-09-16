@@ -179,28 +179,33 @@
               </span>
             </div>
             <div class="mt-2 mb-2 ml-2">
-              {% for user in users %}
+              {% for suggest_user in users %}
               <div class="mb-2">
                
                 <div class="row">
                   <div class="col-sm-6">
                     <span>
-                      <img src="{{user.profile_image.url}}"
+                      <img src="{{suggest_user.profile_image.url}}"
                         style="width: 30px; height: 30px; border-radius: 50%"/>
                     </span>
                     <a href="https://www.instagram.com/kablosuzbeyin" target="_blank">
                     <span class="postuserfont ml-2 mt-1">
-                      <strong>{{ user.username }}</strong>
+                      <strong>{{ suggest_user.username }}</strong>
                     </span>
                     </a>
                   </div>
                   <div class="col-sm-6 text-right">
-                  <form action="follow/{{user.username}}" method="POST">
+                  <form action="follow/{{suggest_user.username}}" method="POST">
                     {% csrf_token %}
                   <button class="btn btn-sm btn-outline-secondary mr-0 border-0">
-                    <span class="postuserfont float-right"
-                      style="font-size: 13px; color: #0095f6; "
-                      ><strong>Follow</strong></span>
+                    <span class="postuserfont float-right" style="font-size: 13px; color: #0095f6; ">
+                      <!-- {{ user.following }} -->
+                        {% if suggest_user.username in user.following %}
+                           <strong>Following</strong>
+                        {% elif following != suggest_user.username %}
+                          <strong>Follow</strong>
+                        {% endif %}
+                    </span>
                   </button>
                 </form>
                   </div>
