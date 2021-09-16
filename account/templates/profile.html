@@ -27,8 +27,8 @@
       </p>
        
       <p class="bg-light"><span class="mr-2"><strong>{{ no_of_posts }} </strong>Posts</span>  
-        <span class="mx-2"><strong>{{ 12 }} </strong>Followers</span>  
-        <span class="mx-2"><strong>{{ 12 }} </strong>Following </span> 
+        <span class="mx-2"><strong>{{ user.followers|length }} </strong>Followers</span>  
+        <span class="mx-2"><strong>{{ user.following|length }} </strong>Following </span> 
       </p>
       <div class="">
        <h6 class="font-weight-bold">{{ user.email }}</h6>

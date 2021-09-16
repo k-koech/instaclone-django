@@ -9,6 +9,17 @@ def index(request):
     return render(request, "index.html")
 
 def dashboard(request):
+    loggedin_user = Users.objects.get(id=request.user.id)
+    print(loggedin_user)
+
+    following_list=[]
+    for following in loggedin_user.following:
+        users_i_follow = Users.objects.get(username=following)
+        following_list.append(users_i_follow.id)
+        print(following_list)
+ 
+    # posts=Posts.objects.in_bulk(following_list)
+    # posts=Posts.objects.filter(user__in=following_list)
     posts=Posts.objects.all()
     users = Users.objects.exclude(id=request.user.id)
     comments=Comments.objects.all()
