@@ -3,11 +3,12 @@ from ..models import Comments, Posts, Users
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     return render(request, "index.html")
 
+@login_required(login_url='/')
 def dashboard(request):
     loggedin_user = Users.objects.get(id=request.user.id)
     print(loggedin_user)

@@ -4,25 +4,10 @@ from ..models import Comments, Posts, Users
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
-import cloudinary
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
-  
-def signUp(request):
-    if request.method=="POST":
-        username=request.POST['username']
-        email=request.POST['email']
-        password=request.POST['password']
-        confirm_password=request.POST['confirm_password']
-        if password==confirm_password:
-            user = Users(username=username, email=email, password=make_password(password))
-            user.save()
-            messages.add_message(request, messages.INFO, 'Successfully Registered!')
-            print("saved")
-        else:
-            print("password doesnt match")
-
-    return render(request, "register.html")
-
+@login_required(login_url='/')
 def add_post(request):
      if request.method=="POST":
         caption=request.POST['caption']
@@ -33,7 +18,8 @@ def add_post(request):
         return redirect(dashboard)
      else:
         return render(request, "dashboard.html")
-        
+
+@login_required(login_url='/')   
 def like_post(request, post_id):   
     post= Posts.objects.get(id=post_id)
     if len(post.likes) == 0:
@@ -52,7 +38,8 @@ def like_post(request, post_id):
                 return  redirect(dashboard)            
     
     return redirect(dashboard)   
-       
+    
+@login_required(login_url='/')
 def profile(request, username):
     posts=Posts.objects.filter(user_id=request.user)
     no_of_posts = Posts.objects.filter(user_id=request.user).count()
@@ -72,6 +59,7 @@ def profile(request, username):
 
     return render(request, "profile.html",{"posts":posts, "no_of_posts":no_of_posts})
 
+@login_required(login_url='/')
 def edit_profile(request):   
     if request.method=="POST":
         user = Users.objects.get(id=request.user.id)
@@ -87,6 +75,7 @@ def edit_profile(request):
         return redirect(edit_profile)
     return render(request, "edit_profile.html")
 
+@login_required(login_url='/')
 def update_dp(request):
      if request.method=="POST":
         image=request.FILES['image']
@@ -98,6 +87,7 @@ def update_dp(request):
      else:
         return redirect(edit_profile)
 
+@login_required(login_url='/')
 def add_comment(request,post_id):
     if request.method=="POST":
         comment=request.POST['comment']
@@ -108,7 +98,7 @@ def add_comment(request,post_id):
     else:
         return redirect(dashboard)
 
-
+@login_required(login_url='/')
 def follow(request, username):
     user= Users.objects.get(id=request.user.id)
     followed_user= Users.objects.get(username=username)
@@ -120,12 +110,7 @@ def follow(request, username):
         user.save()
         followed_user.save()
         return redirect(dashboard)
-        # else:
-        #     for followers in followed_user.following:
-        #         if followers==username:
-        #             followed_user.followers.insert(0,username)
-        #             followed_user.save()
-        #             return redirect(dashboard)
+      
 
     elif len(user.following) != 0 and len(followed_user.followers) == 0:
         for following in user.following:
@@ -158,24 +143,3 @@ def follow(request, username):
 
     return redirect(dashboard)
  
-
-#    user= Users.objects.get(id=username)
-#     print(username)
-#     if len(user.following) == 0:
-#         user.following.insert(0,username)
-#         print(username)
-#         user.save()
-#         return redirect(dashboard)
-
-    
-#     else:
-#         for following in user.following:
-#             if following==request.user.username:
-#                 print("exist")
-#                 return redirect(dashboard)
-#             else:
-#                 user.following.insert(0,username)
-#                 print(username)
-#                 user.save()
-
-#     return redirect(dashboard)
