@@ -12,6 +12,11 @@ def index(request):
 
 @login_required(login_url='/')
 def dashboard(request):
+    posts=Posts.objects.all()
+    profile_images=Profile.objects.all()
+
+    print()
+
     profile_details=Profile.objects.get(user=request.user.id)
     loggedin_user = Users.objects.get(id=request.user.id)
     print(loggedin_user)
@@ -21,13 +26,12 @@ def dashboard(request):
         users_i_follow = Users.objects.get(username=following)
         following_list.append(users_i_follow.id)
         print(following_list)
- 
     # posts=Posts.objects.in_bulk(following_list)
     # posts=Posts.objects.filter(user__in=following_list)
-    posts=Posts.objects.all()
+   
     users = Users.objects.exclude(id=request.user.id)
     comments=Comments.objects.all()
-    context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details}
+    context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details,"profile_images":profile_images}
     return render(request, "dashboard.html",context)
     
 def signUp(request):

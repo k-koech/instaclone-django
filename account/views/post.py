@@ -70,11 +70,13 @@ def edit_profile(request):
         user.username=request.POST['username']
         user.email=request.POST['email']
         user.phone=request.POST['phone']
-        user.bio=request.POST['bio']
+        bio=request.POST['bio']
         user.name=request.POST['name']
         user.gender=request.POST['gender']
-        profile = Profile.objects.get(user=request.user.id)
 
+        profile = Profile.objects.get(user=request.user.id)
+        profile.bio=bio
+        
         user.save()
         profile.save()
         messages.add_message(request, messages.INFO, 'Profile updated successfully!')

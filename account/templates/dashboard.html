@@ -57,8 +57,13 @@
 {% for post in posts %}
       <div class="card mb-4">
         <div class="card-header">
-          <img src="{{post.user.profile_image.url}}" class="mr-2" style="width: 35px; height: 35px;font-family: Arial; border-radius: 50%"
-          />
+          {% for profile_image in profile_images  %}
+             {% if profile_image.user == post.user.id %}
+                <img src="{{profile_image.profile_photo.url}}" class="mr-2" style="width: 35px; height: 35px;font-family: Arial; border-radius: 50%"
+                />
+              {% endif %}
+          {% endfor %}
+         
           <span class="postuserfont"><strong>{{post.user.username}}</strong></span>
           <span class="float-right mt-2"
             ><strong><i class="fas fa-ellipsis-h"></i></strong
@@ -138,8 +143,6 @@
               >furkantolgayuce</strong
             >Abi çok güzelmiş yaa! Bir gün götürürsün artık bizi de:)
           </p> -->
-        
-         
         </div>
 
         <form action="/comment/{{ post.id }}" method="POST" class="card rounded-0 pt-1 pb-0" enctype="multipart/form-data">
@@ -159,7 +162,7 @@
       <div class="card col-xs-12 rightpanel" id="sticky-sidebar" style="width: 22rem">
         <div class="card-body d-flex" >
           <div>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/{{ user.username }}">
               <span>
                 <img src="{{ profile_details.profile_photo.url }}"
                 class="" 
@@ -192,6 +195,12 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <span>
+                      {{ suggest_user.id }}
+                      {% if profile_image.user == post.user.id %}
+                      <img src="{{profile_image.profile_photo.url}}" class="mr-2" style="width: 35px; height: 35px;font-family: Arial; border-radius: 50%"
+                      />
+                    {% endif %}
+                    
                       <img src="{{suggest_user.profile_image.url}}"
                         style="width: 30px; height: 30px; border-radius: 50%"/>
                     </span>
@@ -246,11 +255,5 @@
   </div>
 </div>
 
-<nav class="navbar fixed-bottom text-center navbar-bottom" style="justify-content: center;">
-  <a class="navbar-brand rounded-circle px-3"  data-toggle="modal" data-target="#uploadModal">
-      <i class="fas fa-2x fa-plus-circle"></i>
-      <p>Upload</p>
-  </a>
-</nav>
-{% include 'includes/modal.html' %}
+
 {% endblock %}

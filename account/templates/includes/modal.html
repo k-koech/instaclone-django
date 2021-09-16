@@ -12,11 +12,11 @@
             <form action="add_post" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group" >
-                  <input type="file" name="image">
+                  <input type="file" name="image" required>
                 </div>
                 <div class="form-group">
                   <label>Caption</label>
-                  <input type="text" name="caption" class="form-control" >
+                  <input type="text" name="caption" required class="form-control" >
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Post</button>
