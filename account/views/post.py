@@ -131,7 +131,20 @@ def follow(request, username):
                 print(username)
                 user.save()
                 followed_user.save()
-                return redirect(dashboard)            
+                return redirect(dashboard)  
+
+    elif len(user.following) == 0 and len(followed_user.followers) != 0:
+        for followers in user.followers:
+            if followers==username:
+                print("exist")
+                return redirect(dashboard)
+            else:
+                user.followers.insert(0,username)
+                followed_user.followers.insert(0,request.user.username)
+                print(username)
+                user.save()
+                followed_user.save()
+                return redirect(dashboard)         
 
     else:
         for following in user.following:

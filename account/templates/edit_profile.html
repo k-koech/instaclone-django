@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
 {% endblock %}
 
-<div class="container mt-4 profile-container">
+<div class="container mt-4 px-5">
   {% if messages %}
   <div class="messages">
       {% for message in messages %}
@@ -17,7 +17,7 @@
   </div>
   {% endif %}
   <div class="row profile-row">
-    <div class="col-md-4 col-sm-12 text-center">
+    <div class="col-md-4 col-sm-12 mb-4 text-center">
         <img src="{{ profile_details.profile_photo.url }}" class="profilephoto img-fluid mr-3" />     
     </div>
     <div class="col-md-8 col-sm-12">

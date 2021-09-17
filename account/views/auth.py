@@ -16,7 +16,6 @@ def dashboard(request):
     profile_images=Profile.objects.all()
 
     print()
-
     profile_details=Profile.objects.get(user=request.user.id)
     loggedin_user = Users.objects.get(id=request.user.id)
     print(loggedin_user)
@@ -26,8 +25,6 @@ def dashboard(request):
         users_i_follow = Users.objects.get(username=following)
         following_list.append(users_i_follow.id)
         print(following_list)
-    # posts=Posts.objects.in_bulk(following_list)
-    # posts=Posts.objects.filter(user__in=following_list)
    
     users = Users.objects.exclude(id=request.user.id)
     comments=Comments.objects.all()

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
-<div class="container mt-4 profile-container">
+<div class="container mt-4 px-5">
   {% if messages %}
   <div class="messages">
       {% for message in messages %}
@@ -17,7 +17,7 @@
   </div>
   {% endif %}
   <div class="row profile-row">
-    <div class="col-md-4 col-sm-12 text-center">
+    <div class="col-md-4 col-sm-12 text-center mb-5">
         <img src="{{ profile_details.profile_photo.url }}" class="profilephoto img-fluid mr-3" />     
     </div>
     <div class="col-md-8 col-sm-12">
@@ -41,16 +41,16 @@
   <div class="row">
     {% if posts %}
       {% for post in posts %}
-        <div class="col-md-4 col-sm-3 my-posts">
+        <div class="col-md-4 col-sm-3 my-posts mx-auto">
         <img src="{{post.post_image.url}}" />
         </div>
       {% endfor %}
-    {% else %}
-        <div class="text-center text-muted mx-auto" style="height: 20vh;">
-          <h3 class="">No Posts</h4>
-          <i class="fas fa-5x fa-camera"></i>
-        </div>
-    {% endif %}
+      {% else %}
+          <div class="text-center text-muted mx-auto" style="height: 20vh;">
+            <h3 class="">No Posts</h4>
+            <i class="fas fa-5x fa-camera"></i>
+          </div>
+      {% endif %}
   </div>
   
 </div>
