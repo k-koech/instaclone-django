@@ -28,14 +28,19 @@
         </div>
       </div> 
       
+      <script>
+        if(window.location.href==`${window.location.origin}/dashboard/search` )
+          {
+                  
+              
+          }
+      </script>
       <div class="collapse navbar-collapse ml-5 d-flex justify-content-center">
-        <form method="POST" action="search" class="form-inline my-2 my-lg-0 ml-5 d-none d-sm-block">
+        <form method="POST" action="dashboard/search" class="form-inline my-2 my-lg-0 ml-5 d-none d-sm-block">
           {% csrf_token %}
           <input class="form-control mr-sm-2 empty" name="username" type="search" placeholder="Search username,press enter" style="font-family: Arial, FontAwesome; height: 28px; width: 220px" aria-label="Search" />
         </form>
-      </div>   
-
-
+      </div> 
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
          <!-- for small screen -->
          <div class="phone-navbar">

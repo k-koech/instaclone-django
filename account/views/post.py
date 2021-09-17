@@ -29,6 +29,7 @@ def search(request):
     comments=Comments.objects.all()
     context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details,"profile_images":profile_images}
     return render(request, "search.html",context)
+    
 
 @login_required(login_url='/')
 def add_post(request):
@@ -70,7 +71,7 @@ def profile(request, username):
     
     if request.method=="POST":
         username=request.POST['username']
-        email=request.POST['email']
+        email=request.POST['email'] 
         password=request.POST['password']
         confirm_password=request.POST['confirm_password']
         if password==confirm_password:

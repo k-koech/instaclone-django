@@ -17,7 +17,8 @@ urlpatterns = [
     path("follow/<username>",follow, name="follow" ),
 
     path("<username>",profile, name="profile" ),
-    path("search",search, name="search" ),
     path("account/edit",edit_profile, name="edit_profile" ),
     path("account/update",update_dp, name="update_profile" ),
+    path("dashboard/search",search, name="search" ),
+
 ]
