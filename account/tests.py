@@ -57,8 +57,8 @@ class ImageTestClass(TestCase):
     def test_save_profile(self):
         profile=Profile(profile_photo = 'myphoto.jpg', bio ='Chelsea fan', user=3)
         profile.save_profile()
-        # profile_obj = Profile.objects.all().count()
-        # self.assertTrue(profile_obj>1)
+        profile_obj = Profile.objects.all().count()
+        self.assertTrue(profile_obj>1)
 
 
     def test_update_profile(self):
