@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, "index.html")
 
+""" DASHBOARD VIEW """
 @login_required(login_url='/')
 def dashboard(request):
     profile_images=Profile.objects.all()
@@ -29,7 +30,8 @@ def dashboard(request):
     comments=Comments.objects.all()
     context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details,"profile_images":profile_images}
     return render(request, "dashboard.html",context)
-    
+
+""" USER REGISTRATION VIEW """  
 def signUp(request):
     if request.method=="POST":
         username=request.POST['username']
@@ -53,6 +55,7 @@ def signUp(request):
     else:
         return render(request, "register.html")
 
+""" LOGIN VIEW """
 def signIn(request):
      if request.method=="POST":
         email=request.POST['email']
@@ -71,6 +74,7 @@ def signIn(request):
      else:
         return render(request, "index.html")
 
+""" LOGOUT VIEW """
 def signOut(request):
     logout(request)
     messages.add_message(request, messages.SUCCESS, 'Logout successfully!')

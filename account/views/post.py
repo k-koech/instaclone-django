@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+""" SEARCH VIEW """
 @login_required(login_url='/')
 def search(request):
     username=request.POST['username']
@@ -34,7 +35,8 @@ def search(request):
     comments=Comments.objects.all()
     context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details,"profile_images":profile_images}
     return render(request, "search.html",context)
-    
+
+""" 404 NOT FOUND VIEW """  
 def fouroffour_not_found(request):
     users = Users.objects.exclude(id=request.user.id)
     profile_images=Profile.objects.all()
@@ -42,6 +44,7 @@ def fouroffour_not_found(request):
     context= {"users":users,"profile_details":profile_details,"profile_images":profile_images}
     return render(request,"four_of_four.html",context)
 
+""" UPLOAD IMAGE VIEW """
 @login_required(login_url='/')
 def add_post(request):
      if request.method=="POST":
@@ -54,6 +57,7 @@ def add_post(request):
      else:
         return redirect(dashboard)
 
+""" LIKE PHOTO VIEW """
 @login_required(login_url='/')   
 def like_post(request, post_id):   
     post= Posts.objects.get(id=post_id)
@@ -73,7 +77,8 @@ def like_post(request, post_id):
                 return  redirect(dashboard)            
     
     return redirect(dashboard)   
-    
+
+""" PROFILE PAGE VIEW """   
 @login_required(login_url='/')
 def profile(request, username):
     posts=Posts.objects.filter(user_id=request.user)
@@ -95,7 +100,7 @@ def profile(request, username):
 
     return render(request, "profile.html",{"posts":posts, "no_of_posts":no_of_posts,"profile_details":profile_details})
 
-
+""" EDIT PROFILE PAGE VIEW """  
 @login_required(login_url='/')
 def edit_profile(request):   
     profile_details=Profile.objects.get(user=request.user.id)
@@ -118,6 +123,7 @@ def edit_profile(request):
         return redirect(edit_profile)
     return render(request, "edit_profile.html",{"profile_details":profile_details})
 
+""" UPDATE PROFILE PICTURE VIEW """  
 @login_required(login_url='/')
 def update_dp(request):
      if request.method=="POST":
@@ -130,6 +136,7 @@ def update_dp(request):
      else:
         return redirect(edit_profile)
 
+""" ADDING COMMENT VIEW """  
 @login_required(login_url='/')
 def add_comment(request,post_id):
     if request.method=="POST":
@@ -141,6 +148,7 @@ def add_comment(request,post_id):
     else:
         return redirect(dashboard)
 
+""" FOLLOW USER VIEW """  
 @login_required(login_url='/')
 def follow(request, username):
     user= Users.objects.get(id=request.user.id)
@@ -184,9 +192,6 @@ def follow(request, username):
     else:
         for following in user.following:
             for followers in followed_user.following:
-            # print("following" +following) 
-            # print("username"+ username)
-            # return redirect(dashboard)
                 if following==username and followers==username:
                     print("exist")
                     return redirect(dashboard)
