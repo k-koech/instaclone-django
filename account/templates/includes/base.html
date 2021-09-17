@@ -29,8 +29,9 @@
       </div> 
       
       <div class="collapse navbar-collapse ml-5 d-flex justify-content-center">
-        <form class="form-inline my-2 my-lg-0 ml-5 d-none d-sm-block">
-          <input class="form-control mr-sm-2 empty" type="search" placeholder=" Search" style="font-family: Arial, FontAwesome; height: 28px; width: 216px" aria-label="Search" />
+        <form method="POST" action="search" class="form-inline my-2 my-lg-0 ml-5 d-none d-sm-block">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2 empty" name="username" type="search" placeholder="Search username,press enter" style="font-family: Arial, FontAwesome; height: 28px; width: 220px" aria-label="Search" />
         </form>
       </div>   
 

@@ -1,7 +1,7 @@
 from django.contrib import auth
 from django.urls import path
 from .views.auth import index,signIn,dashboard,signOut,signUp
-from .views.post import add_post, profile,edit_profile,like_post,update_dp,add_comment, follow
+from .views.post import add_post, profile,edit_profile,like_post,update_dp,add_comment, follow,search
 
 urlpatterns = [
     # auth
@@ -17,6 +17,7 @@ urlpatterns = [
     path("follow/<username>",follow, name="follow" ),
 
     path("<username>",profile, name="profile" ),
+    path("search",search, name="search" ),
     path("account/edit",edit_profile, name="edit_profile" ),
     path("account/update",update_dp, name="update_profile" ),
 ]

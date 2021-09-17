@@ -8,6 +8,29 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @login_required(login_url='/')
+def search(request):
+    username=request.POST['username']
+    profile_images=Profile.objects.all()
+
+    profile_details=Profile.objects.get(user=request.user.id)
+    loggedin_user = Users.objects.get(id=request.user.id)
+
+    following_list=[request.user.id]
+    for following in loggedin_user.following:
+        users_i_follow = Users.objects.get(username=following)
+        following_list.append(int(users_i_follow.id))
+    
+    print(following_list)
+    searched_user = Users.objects.get(username=username)
+    posts=Posts.objects.filter(user=searched_user.id)
+    print(posts)
+   
+    users = Users.objects.exclude(id=request.user.id)
+    comments=Comments.objects.all()
+    context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details,"profile_images":profile_images}
+    return render(request, "search.html",context)
+
+@login_required(login_url='/')
 def add_post(request):
      if request.method=="POST":
         caption=request.POST['caption']
