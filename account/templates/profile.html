@@ -32,7 +32,11 @@
       </p>
       <div class="">
        <h6 class="font-weight-bold">{{ user.email }}</h6>
-       <p>{{profile_details.bio}}</p>
+       {% if profile_details.bio == None %}
+         <p>No Bio</p> 
+       {% else %}
+         <p>{{profile_details.bio}}</p>
+       {% endif %}
       </div>
     </div>
   </div>

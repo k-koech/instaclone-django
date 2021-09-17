@@ -80,7 +80,9 @@
 
 
   /* base.html */
-
+.ul {
+  list-style-type: none !important;
+}
 .dropdown img:hover
 {
   cursor: pointer !important;
@@ -107,10 +109,23 @@
   background-color: rgb(255, 224, 224) !important;
   color: rgb(0, 0, 0) !important;
 }
+.phone-navbar
+{
+  display: none;
+}
+
 @media only screen and (max-width: 768px) 
 {
   #navbar
   {
     width: 100vh !important;
+  }
+}
+
+@media only screen and (max-width: 571px) 
+{
+  .phone-navbar
+  {
+    display: block;
   }
 }

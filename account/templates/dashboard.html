@@ -87,16 +87,7 @@
                 style="color: black;position: relative;font-size: 23px;margin-left: -11px;"></i
             ></a>
           </li>
-          <span class="offset-7">
-            <li class="nav-item ml-4">
-              <a class="nav-link ml-2" href="#"
-                ><i
-                  class="far fa-bookmark fa-lg"
-                  style="color: black; position: relative; font-size: 23px"
-                ></i
-              ></a>
-            </li>
-          </span>
+        
         </ul>
         <span>
           <!-- <img src="{{post.post_image.url}}" class="mb-1 ml-3" style="width: 23px; height: 23px; border-radius: 50%" /> -->
@@ -148,7 +139,7 @@
         <form class="card" action="/comment/{{ post.id }}" method="POST">
           {% csrf_token %}
           <div class="flexContainer">
-            <input type="text" name="comment"  style="padding-top: 1em;padding-bottom: 1em;padding-left:1em;width: 70%; border: none;"  class="inputField" placeholder="Write your comment ... ">
+            <input type="text" name="comment"  style="padding-top: 1em;padding-bottom: 1em;padding-left:1em;width: 80% !important; border: none;"  class="inputField" placeholder="Write your comment ... ">
             <button  class="btn btn-outline-secondary rounded-0" type="submit">Comment</button>
           </div>
         </form>
