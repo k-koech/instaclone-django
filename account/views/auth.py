@@ -50,7 +50,7 @@ def signUp(request):
             messages.add_message(request, messages.SUCCESS, 'Successfully Registered!')
             return redirect(signIn)
         else:
-            messages.add_message(request, messages.WARNING, "Password doesn't match ")
+            messages.add_message(request, messages.ERROR, "Password doesn't match ")
             return redirect(signUp)
     else:
         return render(request, "register.html")
@@ -68,7 +68,7 @@ def signIn(request):
             return redirect(dashboard)
  
         else:
-            messages.add_message(request, messages.WARNING, 'Invalid Credentials')
+            messages.add_message(request, messages.ERROR, 'Invalid Credentials')
             return redirect(signIn)
 
      else:

@@ -75,12 +75,14 @@
           //  $('#location').text(data.location);
               // $('.name').text(data.image_name);
           //     $('.date').text(data.pub_date);
-              var likes=response[0].fields.likes.length
+             var likes=(response[0].fields.likes.length)
+              if(likes>0){
+                likes=likes/5
+              }
               $('.caption').text(response[0].fields.caption);
               $("#image").attr("src","https://res.cloudinary.com/dw6wdyms4/"+response[0].fields.post_image);
               $('.likes').text(likes);
-              
-                     
+                   
           },
 
           error: function(response)
@@ -89,7 +91,6 @@
           }
 
         });
-      // },100000);
   })
   }
 </script>
