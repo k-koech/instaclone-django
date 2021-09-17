@@ -53,7 +53,7 @@
           </a>
         </div>
       </div>
-
+<!-- DISPLAYING POSTS -->
 {% if posts %}
 {% for post in posts %}
       <div class="card mb-4">
@@ -93,30 +93,32 @@
         
         </ul>
         <span>
-          <!-- <img src="{{post.post_image.url}}" class="mb-1 ml-3" style="width: 23px; height: 23px; border-radius: 50%" /> -->
         <span class="postuserfont px-2">
-               {{ post.likes|length }} people like this post
-            <!-- <strong>mike</strong> and
-            <strong>42 others</strong> likes this post</span> -->
+               {{ post.likes|length }} people like this post>
         </span>
         <span class="postuserfont px-2 d-block">
           <strong>{{ post.user.username }}</strong> {{ post.caption }}
         </span>
        
         <div class="card-body" style="margin-top: -15px">
-          <p
-            class="card-text postuserfont mt-2" style="margin-left: -4px;margin-top: -14px;color: rgb(139, 133, 133);">
-            Comments
-          </p>
           {% if comments %}
+            <p
+              class="card-text postuserfont mt-2" style="margin-left: -4px;margin-top: -14px;color: rgb(139, 133, 133);">
+              Comments
+            </p>
             {% for comment in comments %}
-                    {% if post.id == comment.post.id %}
+              {% if post.id == comment.post.id %}
                 <p class="card-text postuserfont mb-0">
                   <strong style="margin-left: -4px; margin-right: 5px">{{ comment.user.username }}</strong
                   >{{ comment.comment }}
                 </p>
               {% endif %}
             {% endfor %}
+          {% else %}
+            <p
+              class="card-text postuserfont mt-2" style="margin-left: -4px;margin-top: -14px;color: rgb(139, 133, 133);">
+              No Comment
+            </p>
           {% endif %}
 
         </div>    
@@ -140,7 +142,7 @@
     </div>
 {% endif %}
     </div>
-
+<!-- END OF POSTS -->
      <!-- Right sidebar -->
     <div class="col-12 col-sm-12 col-md-5 d-sm-none d-md-block">
       <div class="card col-xs-12 rightpanel" id="sticky-sidebar" style="width: 22rem">
