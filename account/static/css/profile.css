@@ -19,6 +19,7 @@
 }
 .my-posts 
 {
+    display: flex;
     overflow: hidden;
     height: 18em !important;
     text-align: center;
@@ -26,5 +27,6 @@
 .my-posts  img
 {
 width: 100%;
+height: auto;
 }
 
