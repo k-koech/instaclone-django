@@ -39,8 +39,6 @@ class Users(AbstractBaseUser):
     username = models.CharField( max_length=20, unique=True)  
     email = models.CharField( max_length=50, unique=True)
     name = models.CharField( max_length=50, unique=False, default="Male")
-    # profile_image =  CloudinaryField('image', default='image/upload/v1631717620/default_uomrne.jpg')  
-    # bio= models.TextField(null=True)
     gender = models.CharField( max_length=20)
     phone = models.CharField( max_length=50, unique=False,null=True)
     following = ArrayField(models.CharField(max_length=50, null=True ),size=1000)
