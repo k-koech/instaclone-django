@@ -60,7 +60,7 @@
         <div class="card-header">
           {% for profile_image in profile_images  %}
              {% if profile_image.user == post.user.id %}
-                <img src="{{profile_image.profile_photo.url}}" class="mr-2" style="width: 35px; height: 35px;font-family: Arial; border-radius: 50%"
+                <img  data-toggle="modal" data-target="#photDetailsModal"  onclick="populateForm('{{ post.id }}')"  src="{{profile_image.profile_photo.url}}" class="mr-2" style="width: 35px; height: 35px;font-family: Arial; border-radius: 50%"
                 />
               {% endif %}
           {% endfor %}

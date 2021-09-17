@@ -33,11 +33,10 @@ class ImageTestClass(TestCase):
         self.assertTrue(image_obj>0)
 
 
-    def test_update_image(self):
+    def test_update_caption(self):
         image_obj = Posts.objects.first()
         id=image_obj.id
         caption="This is lit"        
-        
         Posts.update_caption(id,caption)
         image = Posts.objects.get(id=id)
         self.assertEqual(image.caption,"This is lit")

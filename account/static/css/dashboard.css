@@ -27,7 +27,10 @@
     /* flex: 2; */
     width:10em !important;
 }
-
+.card-img-top:hover
+{
+cursor: pointer;
+}
 @media only screen and (max-width: 768px) 
 {
     .post

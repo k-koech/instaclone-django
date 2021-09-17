@@ -1,4 +1,5 @@
-from django.http.response import Http404
+import json
+from django.http.response import Http404, HttpResponse, JsonResponse
 from account.views.auth import dashboard
 from django.shortcuts import get_object_or_404, redirect, render
 from ..models import Comments, Profile, Users, Image as Posts
@@ -6,8 +7,16 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
+
 
 # Create your views here.
+""" MODAL FORM """
+def getImage(request,id):
+    posts = Posts.objects.filter(id=id)
+    posts = serializers.serialize('json', posts)
+    return HttpResponse(posts, content_type="text/json-comment-filtered")
+
 """ SEARCH VIEW """
 @login_required(login_url='/')
 def search(request):
@@ -136,6 +145,7 @@ def update_dp(request):
      else:
         return redirect(edit_profile)
 
+ 
 """ ADDING COMMENT VIEW """  
 @login_required(login_url='/')
 def add_comment(request,post_id):
