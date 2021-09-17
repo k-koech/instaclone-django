@@ -71,6 +71,22 @@ class Profile(models.Model):
     bio= models.TextField(null=True)
     user = models.IntegerField()   
 
+    def save_profile(self):
+        self.save()
+    
+    @classmethod
+    def delete_profile(cls,id):
+        delete_profile = cls.objects.get(id=id)
+        delete_profile.delete()
+        return delete_profile
+    
+    @classmethod
+    def update_profile(cls,id,profile_image,bio):
+        get_profile=cls.objects.get(id=id)
+        get_profile.profile_photo=profile_image
+        get_profile.bio=bio
+        return get_profile.save()
+
 """ IMAGE MODEL """
 class Image(models.Model):
     post_image =  CloudinaryField('image')

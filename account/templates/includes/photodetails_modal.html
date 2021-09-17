@@ -11,44 +11,16 @@
         </div>
         <div class="modal-body">
           <h5 class="mx-5 font-weight-bold"><span class="caption"></span></h5>
-          <div class="px-4 text-center" style="overflow-x: auto;">
-            <img id="image" src="" class="mb-2" style="width: auto; max-height: 70vh;"/>
+          <div class="px-4 text-center details-image" style="overflow-x: auto;">
+            <img id="image" src="" class="mb-2" />
           </div>
            <!-- SHOW NO OF LIKES OF THE IMAGE -->
           <span class="postuserfont px-5">
             <span class="likes"></span> people like this post
           </span>
-         
-          <!-- START OF COMMENT SECTION  -->
-          <div class="card-body mx-5" style="margin-top: -15px">
-            <p
-              class="card-text postuserfont mt-2" style="margin-left: -4px;margin-top: -14px;color: rgb(139, 133, 133);">
-              Comments
-            </p>
-            {% if comments %}
-              {% for comment in comments %}
-                      {% if post.id == comment.post.id %}
-                  <p class="card-text postuserfont mb-0">
-                    <strong style="margin-left: -4px; margin-right: 5px">{{ comment.user.username }}</strong
-                    >{{ comment.comment }}
-                  </p>
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-          </div>  
-        <!-- END OF COMMENT SECTION  -->
-        <!-- START OF COMMENT FORM -->
-          <form class="card" action="/comment/{{ post.id }}" method="POST">
-            {% csrf_token %}
-            <div class="flexContainer">
-              <input type="text" name="comment"  style="padding-top: 1em;padding-bottom: 1em;padding-left:1em;width: 80% !important; border: none;"  class="inputField" placeholder="Write your comment ... ">
-              <button  class="btn btn-outline-secondary rounded-0" type="submit">Comment</button>
-            </div>
-          </form>
-        <!-- END OF COMMENT FORM -->
-
-
-
+          <span class="postuserfont px-5 d-block">
+            <span class="date_posted"></span> 
+          </span>
         </div>
        
       </div>
@@ -79,10 +51,11 @@
               if(likes>0){
                 likes=likes/5
               }
+              $('.date_posted').text(response[0].fields.date_posted);
               $('.caption').text(response[0].fields.caption);
               $("#image").attr("src","https://res.cloudinary.com/dw6wdyms4/"+response[0].fields.post_image);
               $('.likes').text(likes);
-                   
+                     
           },
 
           error: function(response)

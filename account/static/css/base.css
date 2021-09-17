@@ -117,6 +117,11 @@
 {
   display: none !important;
 }
+.details-image img
+{
+  width: auto; 
+  max-height: 70vh;
+}
 @media only screen and (max-width: 768px) 
 {
   #navbar
@@ -130,5 +135,10 @@
   .phone-navbar
   {
     display: block;
+  }
+  .details-image img
+  {
+    width: 100%; 
+    max-height: auto;
   }
 }

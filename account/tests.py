@@ -1,3 +1,4 @@
+from account.views.post import profile
 from django.test import TestCase
 from .models import Image as Posts, Comments, Users, Profile
 # Create your tests here.
@@ -26,7 +27,8 @@ class ImageTestClass(TestCase):
         Profile.objects.all().delete()
         Comments.objects.all().delete()
         Posts.objects.all().delete()
-
+    
+    # SAVING IMAGE
     def test_save_image(self):
         self.user=Posts(post_image = 'xyz.jpg', caption ='It was a one tour to mombasa')
         image_obj = Posts.objects.all().count()
@@ -49,4 +51,31 @@ class ImageTestClass(TestCase):
             img = Posts.objects.get(id=id)
             self.assertTrue("Some results")
         except Posts.DoesNotExist:
+            self.assertTrue("no results"=="no results")
+
+    # TEST PROFILE
+    def test_save_profile(self):
+        profile=Profile(profile_photo = 'myphoto.jpg', bio ='Chelsea fan', user=3)
+        profile.save_profile()
+        # profile_obj = Profile.objects.all().count()
+        # self.assertTrue(profile_obj>1)
+
+
+    def test_update_profile(self):
+        profile_obj = Profile.objects.first()
+        id=profile_obj.id
+        profile_image="myPhoto.png"
+        bio="always happy"        
+        Profile.update_profile(id,profile_image,bio)
+        profile = Profile.objects.get(id=id)
+        self.assertEqual(profile.bio,"always happy")
+
+    def test_delete_profile(self):
+        profile=Profile.objects.first()
+        id=profile.id
+        Profile.delete_profile(id)
+        try:
+            Profile.objects.get(id=id)
+            self.assertTrue("Some results")
+        except Profile.DoesNotExist:
             self.assertTrue("no results"=="no results")
