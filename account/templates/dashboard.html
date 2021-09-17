@@ -53,7 +53,7 @@
         </div>
       </div>
 
-
+{% if posts %}
 {% for post in posts %}
       <div class="card mb-4">
         <div class="card-header">
@@ -146,6 +146,13 @@
 
       </div>
 {% endfor %}
+{% else %}
+    <div class="text-center text-muted mx-auto" style="height: 20vh;">
+      <h6 class="">No Posts at the moment</h6>
+      <h6 class="">Follow other users to see their photos</h6>
+      <i class="fas fa-5x fa-camera"></i>
+    </div>
+{% endif %}
     </div>
 
      <!-- Right sidebar -->

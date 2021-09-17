@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Posts, Comments, Users
+from .models import Image as Posts, Comments, Users
 # Create your tests here.
 
 class ImageTestClass(TestCase):

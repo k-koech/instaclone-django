@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
-
+import numpy as np
 
 # Create your views here.
 def index(request):
@@ -12,19 +12,19 @@ def index(request):
 
 @login_required(login_url='/')
 def dashboard(request):
-    posts=Posts.objects.all()
     profile_images=Profile.objects.all()
 
-    print()
     profile_details=Profile.objects.get(user=request.user.id)
     loggedin_user = Users.objects.get(id=request.user.id)
-    print(loggedin_user)
 
-    following_list=[]
+    following_list=[request.user.id]
     for following in loggedin_user.following:
         users_i_follow = Users.objects.get(username=following)
-        following_list.append(users_i_follow.id)
-        print(following_list)
+        following_list.append(int(users_i_follow.id))
+    
+    print(following_list)
+    posts=Posts.objects.filter(user__in=following_list)
+    print(posts)
    
     users = Users.objects.exclude(id=request.user.id)
     comments=Comments.objects.all()
