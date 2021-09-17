@@ -1,4 +1,4 @@
-# GALLERY APPLICATION 
+# INSTAGRAM CLONE APPLICATION 
 #### The app is a PHOTO app, 15/09/2021
 #### **By Kelvin Kipchumba**
 ## Project Description
