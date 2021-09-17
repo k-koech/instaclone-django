@@ -27,33 +27,21 @@
           
         </div>
       </div> 
-      
-      <script>
-        if(window.location.href==`${window.location.origin}/dashboard/search` )
-          {
-                  
-              
-          }
-      </script>
-      <div class="collapse navbar-collapse ml-5 d-flex justify-content-center search-bar">
-        <form method="POST" action="dashboard/search" class="form-inline my-2 my-lg-0 ml-5 d-none d-sm-block">
-          {% csrf_token %}
-          <input class="form-control mr-sm-2 empty" name="username" type="search" placeholder="Search username,press enter" style="font-family: Arial, FontAwesome; height: 28px; width: 225px" aria-label="Search" />
-        </form>
-      </div> 
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+             
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
          <!-- for small screen -->
          <div class="phone-navbar">
           <ul class="bg-white border list-unstyled p-4">
             <li class="">
               <a class="nav-link" href="/dashboard">Home</a>
             </li>
-            </li>
+          
             <li class="">
               <a class="nav-link" href="#" data-toggle="modal" data-target="#uploadModal"
                 >Upload
               </a>
             </li>
+
             <li class="dropdown ">
               <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" target="_blank">
                   <img src="{{ profile_details.profile_photo.url }}" class="mb-2" style="width: 23px; height: 23px; border-radius: 50%;"/>
@@ -69,8 +57,8 @@
           </ul>
         </div>
         <!-- end of small screen -->
-
-        <ul class="navbar-nav">
+        <div class="pr-5" style="width: 100%;">
+        <ul class="navbar-nav float-right">
           <li class="nav-item active">
             <a class="nav-link" href="/dashboard"><i class="fas fa-home fa-lg mr-2 d-none d-sm-block mt-1"></i><span class="sr-only">(current)</span></a>
           </li>
@@ -103,6 +91,8 @@
              </div>
           </li>
         </ul>
+      </div>
+
       </div>
     </nav>
 
