@@ -33,25 +33,37 @@ def dashboard(request):
 
 """ USER REGISTRATION VIEW """  
 def signUp(request):
+    
     if request.method=="POST":
         username=request.POST['username']
         email=request.POST['email']
         password=request.POST['password']
         confirm_password=request.POST['confirm_password']
-        if password==confirm_password:
-            user = Users(username=username, email=email,followers=[],following=[], password=make_password(password))
-            user.save()
 
-            user = Users.objects.get(username=username)
-            print(user.id)
-            profile=Profile(user=user.id)
-            profile.save()
+        username_exist=Users.objects.filter(username=username).count()
+        email_exist=Users.objects.filter(email=email).count()
+        if username_exist<1:
+            if email_exist<1:
+                if password==confirm_password:
+                    user = Users(username=username, email=email,followers=[],following=[], password=make_password(password))
+                    user.save()
 
-            messages.add_message(request, messages.SUCCESS, 'Successfully Registered!')
-            return redirect(signIn)
+                    user = Users.objects.get(username=username)
+                    print(user.id)
+                    profile=Profile(user=user.id)
+                    profile.save()
+
+                    messages.add_message(request, messages.SUCCESS, 'Successfully Registered!')
+                    return redirect(signIn)
+                else:
+                    messages.add_message(request, messages.ERROR, "Password doesn't match ")
+                    return redirect(signUp)
+            else:
+                    messages.add_message(request, messages.ERROR, "Email exist!")
+                    return redirect(signUp)
         else:
-            messages.add_message(request, messages.ERROR, "Password doesn't match ")
-            return redirect(signUp)
+                messages.add_message(request, messages.ERROR, "Username exist!! ")
+                return redirect(signUp)
     else:
         return render(request, "register.html")
 
