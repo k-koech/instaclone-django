@@ -143,20 +143,20 @@
               >furkantolgayuce</strong
             >Abi çok güzelmiş yaa! Bir gün götürürsün artık bizi de:)
           </p> -->
-        </div>
-
-        <form action="/comment/{{ post.id }}" method="POST" class="card rounded-0 pt-1 pb-0" enctype="multipart/form-data">
+        </div>    
+        
+        <form class="card" action="/comment/{{ post.id }}" method="POST">
           {% csrf_token %}
-          <div class="form-group row">
-            <div class="col-sm-9">
-              <input type="text" name="comment" required class="form-control pl-2 rounded-0 border-0" style="padding-top: 2em;padding-bottom: 2em;" placeholder="Comment ... " >
-            </div>
-            <button type="submit" class="btn btn-outline-primary btn-sm col-sm-2">Post</button>
+          <div class="flexContainer">
+            <input type="text" name="comment"  style="padding-top: 1em;padding-bottom: 1em;padding-left:1em;width: 70%; border: none;"  class="inputField" placeholder="Write your comment ... ">
+            <button  class="btn btn-outline-secondary rounded-0" type="submit">Comment</button>
           </div>
         </form>
+
       </div>
 {% endfor %}
     </div>
+
      <!-- Right sidebar -->
     <div class="col-12 col-sm-12 col-md-5 d-sm-none d-md-block">
       <div class="card col-xs-12 rightpanel" id="sticky-sidebar" style="width: 22rem">

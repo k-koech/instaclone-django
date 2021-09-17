@@ -107,3 +107,10 @@
   background-color: rgb(255, 224, 224) !important;
   color: rgb(0, 0, 0) !important;
 }
+@media only screen and (max-width: 768px) 
+{
+  #navbar
+  {
+    width: 100vh !important;
+  }
+}

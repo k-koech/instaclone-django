@@ -16,6 +16,18 @@
 }
 
 
+.flexContainer 
+{
+    display: flex;
+    width: 100%;
+}
+
+.inputField 
+{
+    /* flex: 2; */
+    width:10em !important;
+}
+
 @media only screen and (max-width: 768px) 
 {
     .post
@@ -23,4 +35,10 @@
         padding-left: 1em !important;
         padding-left: 1em !important;
     }
+
+    .comment-button
+    {
+      width:20px !important;
+    }
+
 }
