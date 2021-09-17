@@ -1,7 +1,7 @@
 from django.contrib import auth
 from django.urls import path
 from .views.auth import index,signIn,dashboard,signOut,signUp
-from .views.post import add_post, profile,edit_profile,like_post,update_dp,add_comment, follow,search
+from .views.post import add_post, profile,edit_profile,like_post,update_dp,add_comment, follow,search,fouroffour_not_found
 
 urlpatterns = [
     # auth
@@ -20,5 +20,7 @@ urlpatterns = [
     path("account/edit",edit_profile, name="edit_profile" ),
     path("account/update",update_dp, name="update_profile" ),
     path("dashboard/search",search, name="search" ),
+    path('404/', fouroffour_not_found),
+
 
 ]

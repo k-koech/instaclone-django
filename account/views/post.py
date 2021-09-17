@@ -1,5 +1,6 @@
+from django.http.response import Http404
 from account.views.auth import dashboard
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from ..models import Comments, Profile, Users, Image as Posts
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
@@ -21,7 +22,11 @@ def search(request):
         following_list.append(int(users_i_follow.id))
     
     print(following_list)
-    searched_user = Users.objects.get(username=username)
+    try:
+        searched_user = Users.objects.get(username=username)
+    except Users.DoesNotExist:
+        return redirect(fouroffour_not_found)
+
     posts=Posts.objects.filter(user=searched_user.id)
     print(posts)
    
@@ -30,6 +35,12 @@ def search(request):
     context= {"posts":posts,"comments":comments,"users":users,"profile_details":profile_details,"profile_images":profile_images}
     return render(request, "search.html",context)
     
+def fouroffour_not_found(request):
+    users = Users.objects.exclude(id=request.user.id)
+    profile_images=Profile.objects.all()
+    profile_details=Profile.objects.get(user=request.user.id)
+    context= {"users":users,"profile_details":profile_details,"profile_images":profile_images}
+    return render(request,"four_of_four.html",context)
 
 @login_required(login_url='/')
 def add_post(request):
