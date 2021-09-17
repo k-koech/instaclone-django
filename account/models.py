@@ -6,7 +6,7 @@ import datetime as dt
 from cloudinary.models import CloudinaryField
 from django.contrib.postgres.fields import ArrayField
 
-# Create your models here.
+""" CUSTOM USER MODEL """
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         if not email:
@@ -65,11 +65,13 @@ class Users(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+""" PROFILE MODEL """
 class Profile(models.Model):
     profile_photo =  CloudinaryField('image', default='image/upload/v1631717620/default_uomrne.jpg')  
     bio= models.TextField(null=True)
     user = models.IntegerField()   
 
+""" IMAGE MODEL """
 class Image(models.Model):
     post_image =  CloudinaryField('image')
     caption = models.TextField()
@@ -92,6 +94,7 @@ class Image(models.Model):
         get_image.caption=caption
         return get_image.save()
 
+""" COMMENTS MODEL """
 class Comments(models.Model):
     comment = models.TextField()
     date_posted = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
