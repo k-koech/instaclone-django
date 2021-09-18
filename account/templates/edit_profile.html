@@ -18,7 +18,13 @@
   {% endif %}
   <div class="row profile-row">
     <div class="col-md-4 col-sm-12 mb-4 text-center">
-        <img src="{{ profile_details.profile_photo.url }}" class="profilephoto img-fluid mr-3" />     
+        <img src="{{ profile_details.profile_photo.url }}" class="profilephoto img-fluid mr-3" />   
+        <p class="mb-0 h5 m-4 font-weight-bold">{{ user.username }}</p>  
+        {% if profile_details.bio == None %}
+          <h6 class="btn btn-outline-success">No Bio. Update!!</h6> 
+        {% else %}
+          <h6 class="btn btn-outline-success">{{profile_details.bio }}</h6> 
+        {% endif %}
     </div>
     <div class="col-md-8 col-sm-12">
         <div class="card p-4 pt-3">
@@ -28,9 +34,9 @@
                 <label class="col-sm-3 col-form-label">
                   <img src="{{ profile_details.profile_photo.url }}" class="mb-2 ml-5" style="width: 4em; height: 4em; border-radius: 50%;"/>
                 </label>
-                <div class="col-sm-9 profile-">
-                  <p class="mb-0 h5">{{ user.username }}</p>
+                <div class="col-sm-9 pt-2 profile-">
                   <h6 class="font-weight-bold" data-toggle="modal" data-target="#profileModal">Change Profile Picture</h6>
+                  <p class="mb-0 h5">{{ user.username }}</p>  
                 </div>
               </div>
      
