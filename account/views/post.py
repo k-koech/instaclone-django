@@ -11,7 +11,7 @@ from django.core import serializers
 
 
 # Create your views here.
-""" MODAL FORM """
+""" MODAL FORM VIEW """
 def getImage(request,id):
     posts = Posts.objects.filter(id=id)
     posts = serializers.serialize('json', posts)
@@ -162,63 +162,6 @@ def add_comment(request,post_id):
         return redirect(dashboard)
 
 """ FOLLOW USER VIEW """  
-# @login_required(login_url='/')
-# def follow(request, username):
-#     user= Users.objects.get(id=request.user.id)
-#     followed_user= Users.objects.get(username=username)
-
-#     if len(user.following) == 0 and len(followed_user.followers) == 0:
-#         user.following.insert(0,username)
-#         followed_user.followers.insert(0,request.user.username)
-#         print(username)
-#         user.save()
-#         followed_user.save()
-#         return redirect(dashboard)
-      
-
-#     elif len(user.following) != 0 and len(followed_user.followers) == 0:
-#         for following in user.following:
-#             if following==username:
-#                 print("exist")
-#                 return redirect(dashboard)
-#             else:
-#                 user.following.insert(0,username)
-#                 followed_user.followers.insert(0,request.user.username)
-#                 print(username)
-#                 user.save()
-#                 followed_user.save()
-#                 return redirect(dashboard)  
-
-#     elif len(user.following) == 0 and len(followed_user.followers) != 0:
-#         for followers in user.followers:
-#             if followers==username:
-#                 print("exist")
-#                 return redirect(dashboard)
-#             else:
-#                 user.followers.insert(0,username)
-#                 followed_user.followers.insert(0,request.user.username)
-#                 print(username)
-#                 user.save()
-#                 followed_user.save()
-#                 return redirect(dashboard)         
-
-#     else:
-#         for following in user.following:
-#             for followers in followed_user.following:
-#                 if following==username and followers==username:
-#                     print("exist")
-#                     return redirect(dashboard)
-#                 else:
-#                     user.following.insert(0,username)
-#                     followed_user.followers.insert(0,request.user.username)
-#                     user.save()
-#                     followed_user.save()
-                    
-
-#     return redirect(dashboard)
-
-
-""" FOLLOW USER VIEW """  
 @login_required(login_url='/')
 def follow(request, username):
     user= Users.objects.get(id=request.user.id)
@@ -257,19 +200,7 @@ def follow(request, username):
             followed_user.followers.insert(0,request.user.username)
             followed_user.save()
             return redirect(dashboard) 
-        # for followers in user.followers:
-        #     if followers==username:
-        #         print("exist")
-        #         return redirect(dashboard)
-        #     else:
-        #         user.followers.insert(0,username)
-        #         followed_user.followers.insert(0,request.user.username)
-        #         followed_user.save()
-        #         return redirect(dashboard) 
-        #         print(username)
-        #         user.save()                
-        #         # constant
-                        
+           
 
     elif len(user.following) > 0 and len(followed_user.followers) > 0:
         if username in user.following:
@@ -292,18 +223,6 @@ def follow(request, username):
                 user.save()
                 return redirect(dashboard)
            
-        
-        # for followers in user.followers:
-        #     if followers==username:
-               
-            # else:
-            #     user.followers.insert(0,username)
-            #     followed_user.followers.insert(0,request.user.username)
-            #     print(username)
-            #     user.save()
-            #     followed_user.save()
-            #     return redirect(dashboard)    
-
     else:
         for following in user.following:
             for followers in followed_user.following:

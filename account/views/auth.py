@@ -23,7 +23,7 @@ def dashboard(request):
         following_list.append(int(users_i_follow.id))
     
     print(following_list)
-    posts=Posts.objects.filter(user__in=following_list)
+    posts=Posts.objects.filter(user__in=following_list).order_by('-id')
     print(posts)
    
     users = Users.objects.exclude(id=request.user.id)

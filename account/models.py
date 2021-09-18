@@ -18,7 +18,7 @@ class MyAccountManager(BaseUserManager):
             email=self.normalize_email(email),
             username=username,
             following=following,
-            followers=followers
+            followers=followers,
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -26,12 +26,11 @@ class MyAccountManager(BaseUserManager):
     
     def create_superuser(self, email,followers, following, username, password):
         user = self.create_user(
-            username=self.normalize_email(username),
-            email=email,
+            email=self.normalize_email(email),
+            username=username,
             following=following,
             followers=followers,
             password = password,
-            
         )
         user.email = email
         user.username = username
