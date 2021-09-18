@@ -8,7 +8,7 @@ from django.contrib.postgres.fields import ArrayField
 
 """ CUSTOM USER MODEL """
 class MyAccountManager(BaseUserManager):
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username,following, followers, password=None):
         if not email:
             raise ValueError(" User must have an email address")
         if not username:
@@ -17,20 +17,28 @@ class MyAccountManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             username=username,
+            following=following,
+            followers=followers
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
     
-    def create_superuser(self, email, username, password):
+    def create_superuser(self, email,followers, following, username, password):
         user = self.create_user(
-            email=self.normalize_email(email),
+            username=self.normalize_email(username),
+            email=email,
+            following=following,
+            followers=followers,
             password = password,
-            username=username,
+            
         )
         user.email = email
+        user.username = username
         user.is_admin = True 
-        user.is_staff = True 
+        user.is_staff = True
+        user.following = []  
+        user.followers = []  
         user.is_superuser = True 
         user.save(using=self._db)
         return user
@@ -52,7 +60,7 @@ class Users(AbstractBaseUser):
     password = models.CharField( max_length=100)
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['password']
+    REQUIRED_FIELDS = ['username','password']
     
     objects=MyAccountManager()
      
